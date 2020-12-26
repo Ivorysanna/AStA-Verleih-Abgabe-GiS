@@ -1,4 +1,4 @@
-header nav img{
+#logo{
     height: 10%;
     width: 10%;
     margin-top: -10px; 
@@ -7,4 +7,14 @@ header nav img{
 a{
     color: inherit;
     text-decoration: inherit;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+#warenkorb{
+    height: 3%;
+    width: 3%;
 }
