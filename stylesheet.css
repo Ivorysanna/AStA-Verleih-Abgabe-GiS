@@ -1,0 +1,10 @@
+header nav img{
+    height: 10%;
+    width: 10%;
+    margin-top: -10px; 
+}
+
+a{
+    color: inherit;
+    text-decoration: inherit;
+}
