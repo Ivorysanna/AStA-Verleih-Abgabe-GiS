@@ -1,0 +1,22 @@
+{
+  "name": "asta-verleih-abgabe-gis",
+  "version": "1.0.0",
+  "description": "ASta-Verleih Abgabe GiS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ivorysanna/ASta-Verleih-Abgabe-GiS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ivorysanna/ASta-Verleih-Abgabe-GiS/issues"
+  },
+  "homepage": "https://github.com/Ivorysanna/ASta-Verleih-Abgabe-GiS#readme",
+  "dependencies": {
+    "@types/node": "^14.14.19"
+  }
+}
