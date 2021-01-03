@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Ivorysanna/ASta-Verleih-Abgabe-GiS#readme",
   "dependencies": {
-    "@types/node": "^14.14.19"
+    "@types/mongodb": "^3.6.3",
+    "@types/node": "^14.14.19",
+    "mongodb": "^3.6.3"
   }
 }
