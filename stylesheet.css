@@ -1,24 +1,25 @@
 * {
-    box-sizing: border-box; /* Content, Padding und Border werden bei der Breitenberechnung berücksichtigt  */
+    box-sizing: border-box;
+    /* Content, Padding und Border werden bei der Breitenberechnung berücksichtigt  */
 }
 
-html, body{
+html, body {
     margin: 0;
     padding: 0;
 }
 
-#logo{
+#logo {
     height: 60%;
 }
 
-#checkout-link{
+#checkout-link {
     color: inherit;
     text-decoration: inherit;
     display: block;
-    height:100%;
+    height: 100%;
 }
 
-nav{
+nav {
     display: flex;
     padding: 10px;
     justify-content: space-between;
@@ -26,6 +27,33 @@ nav{
     width: 100%;
 }
 
-#warenkorb{
+#warenkorb {
     height: 60%;
+}
+
+#produkteContainer {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.produktDiv {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: cornflowerblue;
+    padding: 10px;
+
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+
+}
+
+.produktBild {
+    height: 200px; 
+}
+
+.statusBild{
+
 }
