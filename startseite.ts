@@ -24,28 +24,46 @@ namespace Verleih {
             let produktDiv = document.createElement("div");
             produktDiv.classList.add("produktDiv");
 
+            //Name reinladen
             document.querySelector("#produkteContainer").appendChild(produktDiv);
             let nameDiv = produktDiv.appendChild(document.createElement("div"));
             nameDiv.classList.add("produktName");
             nameDiv.innerHTML = produkte[i].name;
 
+            //Bild reinladen
             let bild = produktDiv.appendChild(document.createElement("img"));
             bild.classList.add("produktBild");
             bild.setAttribute("src", "Bilder/Objekte/" + produkte[i].bild);
-            
+
+            //Produktbeschreibung
             let beschreibungDiv = produktDiv.appendChild(document.createElement("div"));
             beschreibungDiv.classList.add("produktBeschreibung");
             beschreibungDiv.innerHTML = produkte[i].beschreibung;
-
+            
+            //Gebühren 
             let ausleihGebuehrDiv = produktDiv.appendChild(document.createElement("div"));
             ausleihGebuehrDiv.classList.add("gebuehrenDiv");
             ausleihGebuehrDiv.innerHTML = produkte[i].ausleihGebuehr.toString() + " €";
 
+            //Statusbild
             let statusImg = produktDiv.appendChild(document.createElement("img"));
             statusImg.classList.add("statusBild");
             statusImg.setAttribute("src", "Bilder/" + produkte[i].status + ".png");
 
-        
+            //Button für Warenkorb
+            let warenkorbButton = produktDiv.appendChild(document.createElement("button"));
+            warenkorbButton.classList.add("warenkorbButton");
+            warenkorbButton.setAttribute("type", "button");
+            warenkorbButton.innerHTML = "In den Warenkorb";
+
+            //Event zum Waren in Warenkorb hinzufügen
+            warenkorbButton?.addEventListener("click", addWarenkorb);
+
+
+        }
+
+        function addWarenkorb(_event: Event): void{
+            
         }
 
     }
