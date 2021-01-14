@@ -42,7 +42,7 @@ nav {
     display: flex;
     flex-direction: column;
     width: 300px;
-    background-color: #e0dae7;
+     background-color: #e0dae7; 
     padding: 10px;
 
     justify-content: center; /* align horizontal */
@@ -57,4 +57,9 @@ nav {
 .statusBild{
     height: 30px;
     margin-top: 5px;
+}
+
+.produktName{
+   font-size: larger;
+   font-style: bold; 
 }
