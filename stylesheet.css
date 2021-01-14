@@ -52,6 +52,7 @@ nav {
 
 .produktBild {
     height: 200px; 
+    margin: 10px 0;
 }
 
 .statusBild{
@@ -62,4 +63,8 @@ nav {
 .produktName{
    font-size: larger;
    font-style: bold; 
+}
+
+.warenkorbButton{
+    margin-top: 10px;
 }
