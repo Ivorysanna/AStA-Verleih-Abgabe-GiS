@@ -55,6 +55,7 @@ namespace Verleih {
             warenkorbButton.classList.add("warenkorbButton");
             warenkorbButton.setAttribute("type", "button");
             warenkorbButton.innerHTML = "In den Warenkorb";
+            warenkorbButton.setAttribute("ArtikelIndex", i.toString());
 
             //Event zum Waren in Warenkorb hinzufügen
             warenkorbButton?.addEventListener("click", addWarenkorb);
@@ -62,8 +63,10 @@ namespace Verleih {
 
         }
 
+
+        
         function addWarenkorb(_event: Event): void{
-            
+
         }
 
     }
