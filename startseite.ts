@@ -73,6 +73,8 @@ namespace Verleih {
             let getProdukte: Produkt[] = JSON.parse(localStorage.getItem("ArtikelIndex"));
             
 
+            //dem div über dem Button eine Klasse hinzufügen
+            target.parentElement.classList.add("clicked");
             
         }
 
