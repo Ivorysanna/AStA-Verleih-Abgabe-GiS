@@ -42,7 +42,7 @@ nav {
     display: flex;
     flex-direction: column;
     width: 300px;
-     background-color: #e0dae7; 
+    /* background-color: #e0dae7;  */
     padding: 10px;
 
     justify-content: center; /* align horizontal */
@@ -67,4 +67,8 @@ nav {
 
 .warenkorbButton{
     margin-top: 10px;
+}
+
+.produktDiv.clicked{
+background-color: #e0dae7;
 }
