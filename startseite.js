@@ -42,12 +42,22 @@ var Verleih;
             //Event zum Waren in Warenkorb hinzufügen
             warenkorbButton?.addEventListener("click", addWarenkorb);
         }
+        let warenkorbLocalStorage = "warenkorb";
+        //Setzen von Warenkorb Array falls keiner vorhanden ist
+        if (!localStorage.getItem(warenkorbLocalStorage)) {
+            localStorage.setItem(warenkorbLocalStorage, "[]");
+        }
+        //
         function addWarenkorb(_event) {
             //Produkte selektieren durch Button druck
             let target = _event.target;
-            console.log(produkte[parseInt(target.getAttribute("ArtikelIndex"))]);
+            let ausgewaehlterArtikel = (produkte[parseInt(target.getAttribute("ArtikelIndex"))]);
             //In den Warenkorb hinzufügen
-            let getProdukte = JSON.parse(localStorage.getItem("ArtikelIndex"));
+            let warenkorb = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
+            warenkorb.push(ausgewaehlterArtikel);
+            localStorage.setItem(warenkorbLocalStorage, JSON.stringify(warenkorb));
+            //dem div über dem Button eine Klasse hinzufügen
+            target.parentElement.classList.add("clicked");
         }
     }
     produkteAnzeigen();

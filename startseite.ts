@@ -63,15 +63,24 @@ namespace Verleih {
 
         }
 
+        let warenkorbLocalStorage: string = "warenkorb";
 
+        //Setzen von Warenkorb Array falls keiner vorhanden ist
+        if(!localStorage.getItem(warenkorbLocalStorage)){
+            localStorage.setItem(warenkorbLocalStorage, "[]");
+        }
+
+
+        //
         function addWarenkorb(_event: Event): void{
             //Produkte selektieren durch Button druck
             let target: HTMLElement = <HTMLElement>_event.target;
-            console.log(produkte[parseInt(target.getAttribute("ArtikelIndex"))]);
+            let ausgewaehlterArtikel: Produkt = (produkte[parseInt(target.getAttribute("ArtikelIndex"))]);
 
             //In den Warenkorb hinzufügen
-            let getProdukte: Produkt[] = JSON.parse(localStorage.getItem("ArtikelIndex"));
-            
+            let warenkorb: Produkt[] = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
+            warenkorb.push(ausgewaehlterArtikel);
+            localStorage.setItem(warenkorbLocalStorage, JSON.stringify(warenkorb));
 
             //dem div über dem Button eine Klasse hinzufügen
             target.parentElement.classList.add("clicked");
