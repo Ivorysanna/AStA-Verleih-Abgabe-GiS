@@ -52,12 +52,18 @@ var Verleih;
             //Produkte selektieren durch Button druck
             let target = _event.target;
             let ausgewaehlterArtikel = (produkte[parseInt(target.getAttribute("ArtikelIndex"))]);
-            //In den Warenkorb hinzufügen
-            let warenkorb = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
-            warenkorb.push(ausgewaehlterArtikel);
-            localStorage.setItem(warenkorbLocalStorage, JSON.stringify(warenkorb));
-            //dem div über dem Button eine Klasse hinzufügen
-            target.parentElement.classList.add("clicked");
+            //Abfrage ob Artikel vorhanden ist
+            if (produkte[parseInt(target.getAttribute("ArtikelIndex"))].status == "frei") {
+                //In den Warenkorb hinzufügen
+                let warenkorb = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
+                warenkorb.push(ausgewaehlterArtikel);
+                localStorage.setItem(warenkorbLocalStorage, JSON.stringify(warenkorb));
+                //dem div über dem Button eine Klasse hinzufügen
+                target.parentElement.classList.add("clicked");
+            }
+            else {
+                alert("Dieser Artikel ist momentan reserviert oder ausgeliehen!");
+            }
         }
     }
     produkteAnzeigen();

@@ -58,8 +58,7 @@ namespace Verleih {
             warenkorbButton.setAttribute("ArtikelIndex", i.toString());
 
             //Event zum Waren in Warenkorb hinzufügen
-            warenkorbButton?.addEventListener("click", addWarenkorb);
-
+           warenkorbButton?.addEventListener("click", addWarenkorb);
 
         }
 
@@ -77,13 +76,21 @@ namespace Verleih {
             let target: HTMLElement = <HTMLElement>_event.target;
             let ausgewaehlterArtikel: Produkt = (produkte[parseInt(target.getAttribute("ArtikelIndex"))]);
 
-            //In den Warenkorb hinzufügen
-            let warenkorb: Produkt[] = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
-            warenkorb.push(ausgewaehlterArtikel);
-            localStorage.setItem(warenkorbLocalStorage, JSON.stringify(warenkorb));
 
-            //dem div über dem Button eine Klasse hinzufügen
-            target.parentElement.classList.add("clicked");
+            //Abfrage ob Artikel vorhanden ist
+            if(produkte[parseInt(target.getAttribute("ArtikelIndex"))].status == "frei"){
+
+                
+                //In den Warenkorb hinzufügen
+                let warenkorb: Produkt[] = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
+                warenkorb.push(ausgewaehlterArtikel);
+                localStorage.setItem(warenkorbLocalStorage, JSON.stringify(warenkorb));
+                
+                //dem div über dem Button eine Klasse hinzufügen
+                target.parentElement.classList.add("clicked");
+            } else{
+                alert("Dieser Artikel ist momentan reserviert oder ausgeliehen!");
+            }
             
         }
 
