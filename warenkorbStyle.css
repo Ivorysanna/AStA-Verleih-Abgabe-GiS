@@ -22,3 +22,10 @@ nav{
     background-color: #e0dae7;
 }
 
+#startseite-link {
+    color: inherit;
+    text-decoration: inherit;
+    display: block;
+    height: 100%;
+}
+
