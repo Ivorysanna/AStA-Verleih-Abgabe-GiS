@@ -51,13 +51,27 @@ var Verleih;
         function addWarenkorb(_event) {
             //Produkte selektieren durch Button druck
             let target = _event.target;
-            let ausgewaehlterArtikel = (produkte[parseInt(target.getAttribute("ArtikelIndex"))]);
+            let index = parseInt(target.getAttribute("ArtikelIndex"));
+            let ausgewaehlterArtikel = (produkte[index]);
             //Abfrage ob Artikel vorhanden ist
-            if (produkte[parseInt(target.getAttribute("ArtikelIndex"))].status == "frei") {
+            if (produkte[index].status == "frei") {
                 //In den Warenkorb hinzufügen
                 let warenkorb = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
-                warenkorb.push(ausgewaehlterArtikel);
-                localStorage.setItem(warenkorbLocalStorage, JSON.stringify(warenkorb));
+                console.log(warenkorb);
+                let istImWarenkorb = false;
+                for (let i = 0; i < warenkorb.length; i++) {
+                    if (warenkorb[i]._id == ausgewaehlterArtikel._id) {
+                        istImWarenkorb = true;
+                        break;
+                    }
+                }
+                if (istImWarenkorb == true) {
+                    alert("Produkt befindet sich bereits im Warenkorb!");
+                }
+                else {
+                    warenkorb.push(ausgewaehlterArtikel);
+                    localStorage.setItem(warenkorbLocalStorage, JSON.stringify(warenkorb));
+                }
                 //dem div über dem Button eine Klasse hinzufügen
                 target.parentElement.classList.add("clicked");
             }
