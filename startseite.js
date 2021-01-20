@@ -1,9 +1,6 @@
 "use strict";
 var Verleih;
 (function (Verleih) {
-    // enum Status {
-    //     FREI, AUSGELIEHEN, RESERVIERT
-    // }
     async function produkteAnzeigen() {
         let result = await fetch("http://127.0.0.1:5001/Produkte");
         let produkte = JSON.parse(await result.text());
@@ -52,7 +49,7 @@ var Verleih;
             //Produkte selektieren durch Button druck
             let target = _event.target;
             let index = parseInt(target.getAttribute("ArtikelIndex"));
-            let ausgewaehlterArtikel = (produkte[index]);
+            let ausgewaehlterArtikel = produkte[index];
             //Abfrage ob Artikel vorhanden ist
             if (produkte[index].status == "frei") {
                 //In den Warenkorb hinzufügen
