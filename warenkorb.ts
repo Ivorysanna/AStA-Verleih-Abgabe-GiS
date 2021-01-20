@@ -1,7 +1,52 @@
-let produkteImWarenkorb = document.querySelector("produktWarenkorb");
-let lokaleSachen = JSON.parse(localStorage.getItem("warenkorb"));
-produkteImWarenkorb.appendChild(lokaleSachen);
+namespace Verleih{
 
-for(let i: number = 0; lokaleSachen.length; i++){
-    //Produkte rein laden , Bild, Name, Preis sollte reichen denke ich
+    let produkteImWarenkorb: HTMLDivElement = document.querySelector(".produktWarenkorb");
+    let lokaleSachen: Produkt[] = JSON.parse(localStorage.getItem("warenkorb"));
+    // produkteImWarenkorb.appendChild(lokaleSachen);
+    
+    for(let i: number = 0; i < lokaleSachen.length; i++){
+        //Produkte rein laden , Bild, Name, Preis sollte reichen denke ich
+        let produktDiv: HTMLDivElement = document.createElement("div");
+        produktDiv.classList.add("produktDiv");
+        produkteImWarenkorb.appendChild(produktDiv);
+    
+        //Bild reinladen
+        let bild: HTMLImageElement = produktDiv.appendChild(document.createElement("img"));
+        bild.classList.add("produktBild");
+        bild.setAttribute("src", "Bilder/Objekte/" + lokaleSachen[i].bild);
+       
+        //Name
+        let nameDiv: HTMLDivElement = produktDiv.appendChild(document.createElement("div"));
+        nameDiv.classList.add("produktName");
+        nameDiv.innerHTML = lokaleSachen[i].name;
+    
+    
+         //Gebühren 
+         let ausleihGebuehrDiv: HTMLDivElement = produktDiv.appendChild(document.createElement("div"));
+         ausleihGebuehrDiv.classList.add("gebuehrenDiv");
+         ausleihGebuehrDiv.innerHTML = lokaleSachen[i].ausleihGebuehr.toString() + " €";
+
+         //Button zum löschen von sachen
+        let deleteButton: HTMLButtonElement = produktDiv.appendChild(document.createElement("button"));
+        deleteButton.classList.add("deleteButton");
+        deleteButton.setAttribute("type", "button");
+        deleteButton.innerHTML = "Löschen";
+        deleteButton.setAttribute("ArtikelIndex", i.toString());
+
+        //Event löschen von Produkten
+        deleteButton?.addEventListener("click", deleteProdukt);
+
+    }
+
+    //Funktion zum löschen von Produkten
+    function deleteProdukt(_event:Event): void {
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let index: number = parseInt(target.getAttribute("ArtikelIndex"));
+
+        lokaleSachen.splice(index, 1);
+
+        localStorage.setItem("warenkorb", JSON.stringify(lokaleSachen));
+        location.reload();
+    }
 }
+
