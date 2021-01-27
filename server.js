@@ -12,15 +12,11 @@ server.listen(port);
 console.log("Listening on Port" + port);
 server.addListener("request", handleRequest);
 async function handleRequest(_request, _response) {
-    console.log("Hallo");
     _response.setHeader("content-type", "text/html; charset=utf-8");
     _response.setHeader("Access-Control-Allow-Origin", "*");
     let pathName = Url.parse(_request.url).pathname;
     console.log(pathName);
     switch (pathName) {
-        case "/Pizza":
-            _response.write("Pizza bestellt");
-            break;
         case "/Produkte":
             let mongoClient = new Mongo.MongoClient("mongodb+srv://testUser:123@cluster0.df1mb.mongodb.net/Asta-Verleih?retryWrites=true&w=majority", {});
             //wartet auf den connect von der Datenbank
@@ -28,6 +24,9 @@ async function handleRequest(_request, _response) {
             let produktArray = await mongoClient.db("Asta-Verleih").collection("Produkte").find().toArray();
             _response.write(JSON.stringify(produktArray));
             _response.end();
+            break;
+        case "/Verleih":
+            console.log(_request.url);
             break;
     }
     // if(_request.url){
