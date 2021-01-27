@@ -7,7 +7,7 @@ var Verleih;
     let summe = 0;
     let absendenDiv = document.querySelector(".absenden");
     let absendenButton = absendenDiv.appendChild(document.createElement("button"));
-    absendenButton.innerHTML = ("Absenden");
+    absendenButton.innerHTML = "Absenden";
     absendenButton?.addEventListener("click", absendenEvent);
     for (let i = 0; i < lokaleSachen.length; i++) {
         //Produkte rein laden , Bild, Name, Preis sollte reichen denke ich
@@ -22,10 +22,11 @@ var Verleih;
         let nameDiv = produktDiv.appendChild(document.createElement("div"));
         nameDiv.classList.add("produktName");
         nameDiv.innerHTML = lokaleSachen[i].name;
-        //Gebühren 
+        //Gebühren
         let ausleihGebuehrDiv = produktDiv.appendChild(document.createElement("div"));
         ausleihGebuehrDiv.classList.add("gebuehrenDiv");
-        ausleihGebuehrDiv.innerHTML = lokaleSachen[i].ausleihGebuehr.toString() + " €";
+        ausleihGebuehrDiv.innerHTML =
+            lokaleSachen[i].ausleihGebuehr.toString() + " €";
         //Button zum löschen von sachen
         let deleteButton = produktDiv.appendChild(document.createElement("button"));
         deleteButton.classList.add("deleteButton");
@@ -47,7 +48,12 @@ var Verleih;
         localStorage.setItem("warenkorb", JSON.stringify(lokaleSachen));
         location.reload();
     }
-    function absendenEvent(_event) {
+    async function absendenEvent(_event) {
+        let nameFeld = document.querySelector(".inputName");
+        let nameFeldWert = nameFeld.value;
+        let UrlVerleih = "http://127.0.0.1:5001/Verleih";
+        let result = await fetch(UrlVerleih);
+        UrlVerleih = UrlVerleih + "?name=" + nameFeldWert;
     }
 })(Verleih || (Verleih = {}));
 //# sourceMappingURL=warenkorb.js.map
