@@ -3,6 +3,13 @@ namespace Verleih{
     let produkteImWarenkorb: HTMLDivElement = document.querySelector(".produktWarenkorb");
     let lokaleSachen: Produkt[] = JSON.parse(localStorage.getItem("warenkorb"));
     // produkteImWarenkorb.appendChild(lokaleSachen);
+    let summe: number = 0;
+
+    let absendenDiv: HTMLDivElement = document.querySelector(".absenden");
+    let absendenButton: HTMLButtonElement = absendenDiv.appendChild(document.createElement("button"));
+    absendenButton.innerHTML = ("Absenden");
+
+    absendenButton?.addEventListener("click", absendenEvent);
     
     for(let i: number = 0; i < lokaleSachen.length; i++){
         //Produkte rein laden , Bild, Name, Preis sollte reichen denke ich
@@ -36,7 +43,12 @@ namespace Verleih{
         //Event löschen von Produkten
         deleteButton?.addEventListener("click", deleteProdukt);
 
+        //Summe berechnen für Artikel im Warenkorb
+        summe += lokaleSachen[i].ausleihGebuehr;
     }
+
+    let warenkorbSumme: HTMLDivElement = document.querySelector(".summe");
+    warenkorbSumme.innerHTML = "Summe: " + summe + "€";
 
     //Funktion zum löschen von Produkten
     function deleteProdukt(_event:Event): void {
@@ -47,6 +59,10 @@ namespace Verleih{
 
         localStorage.setItem("warenkorb", JSON.stringify(lokaleSachen));
         location.reload();
+    }
+
+    function absendenEvent(_event:Event): void{
+
     }
 }
 

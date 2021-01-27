@@ -4,6 +4,11 @@ var Verleih;
     let produkteImWarenkorb = document.querySelector(".produktWarenkorb");
     let lokaleSachen = JSON.parse(localStorage.getItem("warenkorb"));
     // produkteImWarenkorb.appendChild(lokaleSachen);
+    let summe = 0;
+    let absendenDiv = document.querySelector(".absenden");
+    let absendenButton = absendenDiv.appendChild(document.createElement("button"));
+    absendenButton.innerHTML = ("Absenden");
+    absendenButton?.addEventListener("click", absendenEvent);
     for (let i = 0; i < lokaleSachen.length; i++) {
         //Produkte rein laden , Bild, Name, Preis sollte reichen denke ich
         let produktDiv = document.createElement("div");
@@ -29,7 +34,11 @@ var Verleih;
         deleteButton.setAttribute("ArtikelIndex", i.toString());
         //Event löschen von Produkten
         deleteButton?.addEventListener("click", deleteProdukt);
+        //Summe berechnen für Artikel im Warenkorb
+        summe += lokaleSachen[i].ausleihGebuehr;
     }
+    let warenkorbSumme = document.querySelector(".summe");
+    warenkorbSumme.innerHTML = "Summe: " + summe + "€";
     //Funktion zum löschen von Produkten
     function deleteProdukt(_event) {
         let target = _event.target;
@@ -37,6 +46,8 @@ var Verleih;
         lokaleSachen.splice(index, 1);
         localStorage.setItem("warenkorb", JSON.stringify(lokaleSachen));
         location.reload();
+    }
+    function absendenEvent(_event) {
     }
 })(Verleih || (Verleih = {}));
 //# sourceMappingURL=warenkorb.js.map
