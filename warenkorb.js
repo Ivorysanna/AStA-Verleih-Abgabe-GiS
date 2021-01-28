@@ -52,8 +52,8 @@ var Verleih;
         let nameFeld = document.querySelector(".inputName");
         let nameFeldWert = nameFeld.value;
         let UrlVerleih = "http://127.0.0.1:5001/Verleih";
-        let result = await fetch(UrlVerleih);
-        UrlVerleih = UrlVerleih + "?name=" + nameFeldWert;
+        UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
+        await fetch(UrlVerleih);
     }
 })(Verleih || (Verleih = {}));
 //# sourceMappingURL=warenkorb.js.map

@@ -77,7 +77,7 @@ namespace Verleih {
     let nameFeldWert: string = nameFeld.value;
 
     let UrlVerleih: string = "http://127.0.0.1:5001/Verleih";
-    let result: Response = await fetch(UrlVerleih);
-    UrlVerleih = UrlVerleih + "?name=" + nameFeldWert;
+    UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
+    await fetch(UrlVerleih);
   }
 }
