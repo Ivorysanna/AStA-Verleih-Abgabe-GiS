@@ -25,8 +25,7 @@ var Verleih;
         //Gebühren
         let ausleihGebuehrDiv = produktDiv.appendChild(document.createElement("div"));
         ausleihGebuehrDiv.classList.add("gebuehrenDiv");
-        ausleihGebuehrDiv.innerHTML =
-            lokaleSachen[i].ausleihGebuehr.toString() + " €";
+        ausleihGebuehrDiv.innerHTML = lokaleSachen[i].ausleihGebuehr.toString() + " €";
         //Button zum löschen von sachen
         let deleteButton = produktDiv.appendChild(document.createElement("button"));
         deleteButton.classList.add("deleteButton");

@@ -39,8 +39,7 @@ namespace Verleih {
       document.createElement("div")
     );
     ausleihGebuehrDiv.classList.add("gebuehrenDiv");
-    ausleihGebuehrDiv.innerHTML =
-      lokaleSachen[i].ausleihGebuehr.toString() + " €";
+    ausleihGebuehrDiv.innerHTML = lokaleSachen[i].ausleihGebuehr.toString() + " €";
 
     //Button zum löschen von sachen
     let deleteButton: HTMLButtonElement = produktDiv.appendChild(
