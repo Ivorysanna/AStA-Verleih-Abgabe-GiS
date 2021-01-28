@@ -9,6 +9,7 @@ namespace Verleih {
         bild: string;
         ausleihGebuehr: number;
         status: string;
+        studentName: string;
     }
 
 
