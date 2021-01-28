@@ -39,7 +39,7 @@ async function handleRequest(_request: Http.IncomingMessage, _response: Http.Ser
             // console.log(_request.url);
             let parameter: URLSearchParams = myURL.searchParams;
             let parseProdukte: any[] = JSON.parse(parameter.get("produkte"));
-             console.log(parameter.get("name"));
+             let eingetragenePerson : string = parameter.get("name");
              // console.log(parseProdukte);
                 
              for(let i:number = 0; i < parseProdukte.length; i++){
@@ -47,9 +47,14 @@ async function handleRequest(_request: Http.IncomingMessage, _response: Http.Ser
                 console.log(parseProdukte[i].name);
                 console.log(parseProdukte[i]._id);
 
-                //Gibt die erste Sache zurück die gefunden wird
                 //ObjectID wird benötigt da es nicht nur ein String ist sondern ein Object https://stackoverflow.com/questions/8233014/how-do-i-search-for-an-object-by-its-objectid-in-the-mongo-console
-                let produktCursor: Mongo.Cursor = await mongoClient.db("Asta-Verleih").collection("Produkte").findOne({"_id": new Mongo.ObjectID(parseProdukte[i]._id)});
+                let findQuery: Object = {"_id": new Mongo.ObjectID(parseProdukte[i]._id)};
+
+                //https://stackoverflow.com/a/38883596
+                let updateQuery: Object = {$set:{"studentName": eingetragenePerson}};
+                
+                //FindOneAndUpdate: Mongodb Dokumentation: https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndUpdate/#examples (Erster Parameter sucht, zweiter Paramater updatet das gefundene)
+                let produktCursor: Mongo.FindAndModifyWriteOpResultObject<any> = await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQuery,updateQuery);
                 console.log(produktCursor);
             }
 
