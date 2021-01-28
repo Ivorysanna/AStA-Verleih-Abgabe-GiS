@@ -34,7 +34,11 @@ async function handleRequest(_request, _response) {
             for (let i = 0; i < parseProdukte.length; i++) {
                 console.log(parseProdukte[i].bild);
                 console.log(parseProdukte[i].name);
-                console.log(parseProdukte[i].ausleihGebuehr);
+                console.log(parseProdukte[i]._id);
+                //Gibt die erste Sache zurück die gefunden wird
+                //ObjectID wird benötigt da es nicht nur ein String ist sondern ein Object https://stackoverflow.com/questions/8233014/how-do-i-search-for-an-object-by-its-objectid-in-the-mongo-console
+                let produktCursor = await mongoClient.db("Asta-Verleih").collection("Produkte").findOne({ "_id": new Mongo.ObjectID(parseProdukte[i]._id) });
+                console.log(produktCursor);
             }
             break;
     }
