@@ -2,6 +2,15 @@ import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
 
+interface Produkt {
+    _id: string;
+    name: string;
+    beschreibung: string;
+    bild: string;
+    ausleihGebuehr: number;
+    status: string;
+    studentName: string;
+}
 
 
 let server: Http.Server = Http.createServer();
@@ -28,7 +37,7 @@ async function handleRequest(_request: Http.IncomingMessage, _response: Http.Ser
     
     switch (pathName) {
         case "/Produkte":
-            let produktArray: any[] = await mongoClient.db("Asta-Verleih").collection("Produkte").find().toArray();
+            let produktArray: Produkt[] = await mongoClient.db("Asta-Verleih").collection("Produkte").find().toArray();
 
             _response.write(JSON.stringify(produktArray));
             
@@ -38,7 +47,7 @@ async function handleRequest(_request: Http.IncomingMessage, _response: Http.Ser
             let myURL: Url.URL =  new Url.URL(_request.url, "https://example.com");
             // console.log(_request.url);
             let parameter: URLSearchParams = myURL.searchParams;
-            let parseProdukte: any[] = JSON.parse(parameter.get("produkte"));
+            let parseProdukte: Produkt[] = JSON.parse(parameter.get("produkte"));
              let eingetragenePerson : string = parameter.get("name");
              // console.log(parseProdukte);
                 
