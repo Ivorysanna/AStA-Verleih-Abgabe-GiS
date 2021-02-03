@@ -36,13 +36,20 @@ async function handleRequest(_request, _response) {
                 console.log(parseProdukte[i].name);
                 console.log(parseProdukte[i]._id);
                 //ObjectID wird benötigt da es nicht nur ein String ist sondern ein Object https://stackoverflow.com/questions/8233014/how-do-i-search-for-an-object-by-its-objectid-in-the-mongo-console
-                let findQuery = { "_id": new Mongo.ObjectID(parseProdukte[i]._id) };
-                //https://stackoverflow.com/a/38883596
-                let updateQuery = { $set: { "studentName": eingetragenePerson } };
+                let findQuery = {
+                    _id: new Mongo.ObjectID(parseProdukte[i]._id),
+                };
+                //https://stackoverflow.com/a/38883596  zum updaten des Werts
+                let updateQuery = { $set: { studentName: eingetragenePerson } };
                 //FindOneAndUpdate: Mongodb Dokumentation: https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndUpdate/#examples (Erster Parameter sucht, zweiter Paramater updatet das gefundene)
                 let produktCursor = await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQuery, updateQuery);
                 console.log(produktCursor);
             }
+            break;
+        case "/AstaIntern":
+            let produkteArray = await mongoClient.db("Asta-Verleih").collection("Produkte").find().toArray();
+            console.log(produkteArray);
+            _response.write(JSON.stringify(produkteArray));
             break;
     }
     _response.end();
@@ -50,7 +57,7 @@ async function handleRequest(_request, _response) {
     //     let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
     //     for(let key in url.query){
     //         _response.write(key + ":" + url.query[key]);
-    //     }  
+    //     }
     //     let jsonString: string = JSON.stringify(url.query);
     //     _response.write(jsonString);
     // }
