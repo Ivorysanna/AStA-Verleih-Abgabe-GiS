@@ -28,6 +28,11 @@ namespace Verleih {
             let statusImg: HTMLImageElement = produktDiv.appendChild(document.createElement("img"));
             statusImg.classList.add("statusBild");
             statusImg.setAttribute("src", "Bilder/" + produkte[i].status + ".png");
+
+            //Studenten Name 
+            let studentenNameDiv: HTMLDivElement = produktDiv.appendChild(document.createElement("div"));
+            studentenNameDiv.classList.add("studentenNameDiv");
+            studentenNameDiv.innerHTML = produkte[i].studentName;
             
             if(produkte[i].status == "frei"){
                 //mach mal nichts

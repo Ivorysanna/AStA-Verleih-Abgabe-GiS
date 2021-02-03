@@ -25,6 +25,10 @@ var Verleih;
             let statusImg = produktDiv.appendChild(document.createElement("img"));
             statusImg.classList.add("statusBild");
             statusImg.setAttribute("src", "Bilder/" + produkte[i].status + ".png");
+            //Studenten Name 
+            let studentenNameDiv = produktDiv.appendChild(document.createElement("div"));
+            studentenNameDiv.classList.add("studentenNameDiv");
+            studentenNameDiv.innerHTML = produkte[i].studentName;
             if (produkte[i].status == "frei") {
                 //mach mal nichts
             }
