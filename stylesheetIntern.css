@@ -19,3 +19,30 @@ nav {
 #logo {
     height: 60%;
 }
+
+.reservierteProdukte{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: left;
+}
+
+.produktDiv {
+    display: flex;
+    margin: 10px;
+    flex-direction: row;
+    width: 300px;
+    padding: 10px;
+    justify-content: space-around;
+    /* align horizontal */
+    align-items: center;
+    /* align vertical */
+    width: 90%;
+    border: double;
+}
+
+.produktBild {
+    height: 200px;
+    margin: 10px 0;
+    object-fit: contain;
+}
