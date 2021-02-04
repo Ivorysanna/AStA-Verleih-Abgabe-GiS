@@ -40,25 +40,26 @@ async function handleRequest(_request, _response) {
                     _id: new Mongo.ObjectID(parseProdukte[i]._id),
                 };
                 //https://stackoverflow.com/a/38883596  zum updaten des Werts
-                let updateQuery = { $set: { studentName: eingetragenePerson } };
+                let updateQuery = { $set: { studentName: eingetragenePerson, status: "reserviert" } };
                 //FindOneAndUpdate: Mongodb Dokumentation: https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndUpdate/#examples (Erster Parameter sucht, zweiter Paramater updatet das gefundene)
                 await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQuery, updateQuery);
             }
             break;
         case "/AstaIntern":
             let produkteArray = await mongoClient.db("Asta-Verleih").collection("Produkte").find().toArray();
-            console.log(produkteArray);
+            // console.log(produkteArray);
             _response.write(JSON.stringify(produkteArray));
             break;
         case "/AstaIntern/statusUpdate":
             let statusParamter = parameter.get("status");
-            let findQueryStatus = { status: statusParamter };
+            let idParamter = parameter.get("id");
+            let findQueryStatus = { _id: new Mongo.ObjectID(idParamter) };
             let updateQueryStatus;
             if (statusParamter == "ausgeliehen") {
                 updateQueryStatus = { $set: { status: "ausgeliehen" } };
             }
             else if (statusParamter == "freigegeben") {
-                updateQueryStatus = { $set: { status: "frei" } };
+                updateQueryStatus = { $set: { status: "frei", studentName: "" } };
             }
             await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQueryStatus, updateQueryStatus);
     }

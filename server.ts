@@ -60,7 +60,7 @@ async function handleRequest(_request: Http.IncomingMessage, _response: Http.Ser
                 };
 
                 //https://stackoverflow.com/a/38883596  zum updaten des Werts
-                let updateQuery: Object = { $set: { studentName: eingetragenePerson } };
+                let updateQuery: Object = { $set: { studentName: eingetragenePerson, status:"reserviert" } };
 
                 //FindOneAndUpdate: Mongodb Dokumentation: https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndUpdate/#examples (Erster Parameter sucht, zweiter Paramater updatet das gefundene)
                  await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQuery, updateQuery);
@@ -68,21 +68,22 @@ async function handleRequest(_request: Http.IncomingMessage, _response: Http.Ser
             break;
         case "/AstaIntern":
             let produkteArray: Produkt[] = await mongoClient.db("Asta-Verleih").collection("Produkte").find().toArray();
-            console.log(produkteArray);
+            // console.log(produkteArray);
             _response.write(JSON.stringify(produkteArray));
             break;
 
         case "/AstaIntern/statusUpdate":
             let statusParamter: string = parameter.get("status");
-
-            let findQueryStatus: Object = {status: statusParamter};
+            let idParamter: string = parameter.get("id");
+            
+            let findQueryStatus: Object = {_id: new Mongo.ObjectID(idParamter)};
             let updateQueryStatus: Object;
-
+            
             if(statusParamter == "ausgeliehen"){
                 updateQueryStatus = {$set: {status: "ausgeliehen"}};
                 
             }else if(statusParamter == "freigegeben"){
-                updateQueryStatus = {$set: {status: "frei"}};
+                updateQueryStatus = {$set: {status: "frei", studentName: ""}};
             }
             await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQueryStatus, updateQueryStatus); 
 
