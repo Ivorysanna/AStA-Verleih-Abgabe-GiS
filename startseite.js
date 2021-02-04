@@ -5,6 +5,7 @@ var Verleih;
         let result = await fetch(Verleih.serverUrl + "Produkte");
         let produkte = JSON.parse(await result.text());
         console.log(produkte);
+        let localStorageArray = JSON.parse(localStorage.getItem("warenkorb"));
         // Erstellen von Divs für Produkte
         for (let i = 0; i < produkte.length; i++) {
             let produktDiv = document.createElement("div");
@@ -38,6 +39,13 @@ var Verleih;
             warenkorbButton.setAttribute("ArtikelIndex", i.toString());
             //Event zum Waren in Warenkorb hinzufügen
             warenkorbButton?.addEventListener("click", addWarenkorb);
+            let istImWarenkorb = false;
+            for (let i = 0; i < localStorageArray.length; i++) {
+                if (localStorageArray[i]._id == produkte[i]._id) {
+                    istImWarenkorb = true;
+                    break;
+                }
+            }
         }
         let warenkorbLocalStorage = "warenkorb";
         //Setzen von Warenkorb Array falls keiner vorhanden ist

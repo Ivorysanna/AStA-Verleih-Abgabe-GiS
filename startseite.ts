@@ -17,6 +17,9 @@ namespace Verleih {
         console.log(produkte);
 
 
+        let localStorageArray: Produkt[] = JSON.parse(localStorage.getItem("warenkorb"));
+
+
         // Erstellen von Divs für Produkte
         for (let i: number = 0; i < produkte.length; i++) {
             let produktDiv: HTMLDivElement = document.createElement("div");
@@ -58,6 +61,14 @@ namespace Verleih {
             //Event zum Waren in Warenkorb hinzufügen
            warenkorbButton?.addEventListener("click", addWarenkorb);
 
+
+            let istImWarenkorb: boolean = false;
+            for(let i: number = 0; i < localStorageArray.length; i++){
+                if(localStorageArray[i]._id == produkte[i]._id){
+                    istImWarenkorb = true;
+                    break;
+                }
+            }
         }
 
         let warenkorbLocalStorage: string = "warenkorb";
