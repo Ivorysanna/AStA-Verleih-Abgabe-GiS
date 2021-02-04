@@ -57,7 +57,7 @@ async function handleRequest(_request, _response) {
             if (statusParamter == "ausgeliehen") {
                 updateQueryStatus = { $set: { status: "ausgeliehen" } };
             }
-            else if (statusParamter == "freigestellt") {
+            else if (statusParamter == "freigegeben") {
                 updateQueryStatus = { $set: { status: "frei" } };
             }
             await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQueryStatus, updateQueryStatus);
