@@ -2,7 +2,7 @@
 var Verleih;
 (function (Verleih) {
     async function produkteAstaAnzeigen() {
-        let result = await fetch("http://127.0.0.1:5001/AstaIntern");
+        let result = await fetch(Verleih.serverUrl + "AstaIntern");
         let produkte = JSON.parse(await result.text());
         console.log(produkte);
         for (let i = 0; produkte.length; i++) {
@@ -25,22 +25,21 @@ var Verleih;
             let statusImg = produktDiv.appendChild(document.createElement("img"));
             statusImg.classList.add("statusBild");
             statusImg.setAttribute("src", "Bilder/" + produkte[i].status + ".png");
-            //Studenten Name 
+            //Studenten Name
             let studentenNameDiv = produktDiv.appendChild(document.createElement("div"));
             studentenNameDiv.classList.add("studentenNameDiv");
             studentenNameDiv.innerHTML = produkte[i].studentName;
-            if (produkte[i].status == "frei") {
-                //mach mal nichts
-            }
-            else if (produkte[i].status == "reserviert") {
+            //Status zum sortieren, da man verschiedene Buttons braucht je nach Status
+            if (produkte[i].status == "reserviert") {
                 //Button für ausgeliehen wechseln
                 let ausgeliehenButton = produktDiv.appendChild(document.createElement("button"));
                 ausgeliehenButton.classList.add("ausgeliehenButton");
                 ausgeliehenButton.setAttribute("type", "button");
                 ausgeliehenButton.innerHTML = "Ausgeliehen";
                 ausgeliehenButton.setAttribute("ArtikelIndex", i.toString());
+                ausgeliehenButton?.addEventListener("click", ausgeliehenMarkieren);
             }
-            else {
+            else if (produkte[i].status == "ausgeliehen") {
                 //Button wieder freigeben
                 let freigebenButton = produktDiv.appendChild(document.createElement("button"));
                 freigebenButton.classList.add("freigebenButton");
@@ -48,6 +47,14 @@ var Verleih;
                 freigebenButton.innerHTML = "Wieder freigeben";
                 freigebenButton.setAttribute("ArtikelIndex", i.toString());
             }
+        }
+        async function ausgeliehenMarkieren(_event) {
+            let target = _event.target;
+            let index = parseInt(target.getAttribute("ArtikelIndex"));
+            let idIndex = produkte[index]._id;
+            let UrlAusgeliehen = Verleih.serverUrl + "AstaIntern/statusupdate";
+            UrlAusgeliehen = UrlAusgeliehen + "?id=" + idIndex + "&status=" + "ausgeliehen";
+            await fetch(UrlAusgeliehen);
         }
     }
     produkteAstaAnzeigen();
