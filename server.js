@@ -19,15 +19,15 @@ async function handleRequest(_request, _response) {
     let mongoClient = new Mongo.MongoClient("mongodb+srv://testUser:123@cluster0.df1mb.mongodb.net/Asta-Verleih?retryWrites=true&w=majority", {});
     //wartet auf den connect von der Datenbank
     await mongoClient.connect();
+    let myURL = new Url.URL(_request.url, "https://example.com");
+    let parameter = myURL.searchParams;
     switch (pathName) {
         case "/Produkte":
             let produktArray = await mongoClient.db("Asta-Verleih").collection("Produkte").find().toArray();
             _response.write(JSON.stringify(produktArray));
             break;
         case "/Verleih":
-            let myURL = new Url.URL(_request.url, "https://example.com");
             // console.log(_request.url);
-            let parameter = myURL.searchParams;
             let parseProdukte = JSON.parse(parameter.get("produkte"));
             let eingetragenePerson = parameter.get("name");
             // console.log(parseProdukte);
@@ -42,8 +42,7 @@ async function handleRequest(_request, _response) {
                 //https://stackoverflow.com/a/38883596  zum updaten des Werts
                 let updateQuery = { $set: { studentName: eingetragenePerson } };
                 //FindOneAndUpdate: Mongodb Dokumentation: https://docs.mongodb.com/manual/reference/method/db.collection.findOneAndUpdate/#examples (Erster Parameter sucht, zweiter Paramater updatet das gefundene)
-                let produktCursor = await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQuery, updateQuery);
-                console.log(produktCursor);
+                await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQuery, updateQuery);
             }
             break;
         case "/AstaIntern":
@@ -51,6 +50,17 @@ async function handleRequest(_request, _response) {
             console.log(produkteArray);
             _response.write(JSON.stringify(produkteArray));
             break;
+        case "/AstaIntern/statusUpdate":
+            let statusParamter = parameter.get("status");
+            let findQueryStatus = { status: statusParamter };
+            let updateQueryStatus;
+            if (statusParamter == "ausgeliehen") {
+                updateQueryStatus = { $set: { status: "ausgeliehen" } };
+            }
+            else if (statusParamter == "freigestellt") {
+                updateQueryStatus = { $set: { status: "frei" } };
+            }
+            await mongoClient.db("Asta-Verleih").collection("Produkte").findOneAndUpdate(findQueryStatus, updateQueryStatus);
     }
     _response.end();
     // if(_request.url){
