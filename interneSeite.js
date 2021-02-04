@@ -46,6 +46,7 @@ var Verleih;
                 freigebenButton.setAttribute("type", "button");
                 freigebenButton.innerHTML = "Wieder freigeben";
                 freigebenButton.setAttribute("ArtikelIndex", i.toString());
+                freigebenButton?.addEventListener("click", freiMarkieren);
             }
         }
         async function ausgeliehenMarkieren(_event) {
@@ -54,6 +55,14 @@ var Verleih;
             let idIndex = produkte[index]._id;
             let UrlAusgeliehen = Verleih.serverUrl + "AstaIntern/statusupdate";
             UrlAusgeliehen = UrlAusgeliehen + "?id=" + idIndex + "&status=" + "ausgeliehen";
+            await fetch(UrlAusgeliehen);
+        }
+        async function freiMarkieren(_event) {
+            let target = _event.target;
+            let index = parseInt(target.getAttribute("ArtikelIndex"));
+            let idIndex = produkte[index]._id;
+            let UrlAusgeliehen = Verleih.serverUrl + "AstaIntern/statusupdate";
+            UrlAusgeliehen = UrlAusgeliehen + "?id=" + idIndex + "&status=" + "freigegeben";
             await fetch(UrlAusgeliehen);
         }
     }

@@ -51,6 +51,8 @@ namespace Verleih {
                 freigebenButton.setAttribute("type", "button");
                 freigebenButton.innerHTML = "Wieder freigeben";
                 freigebenButton.setAttribute("ArtikelIndex", i.toString());
+
+                freigebenButton?.addEventListener("click", freiMarkieren);
             } 
         }
 
@@ -61,6 +63,16 @@ namespace Verleih {
 
             let UrlAusgeliehen: string = serverUrl + "AstaIntern/statusupdate";
             UrlAusgeliehen = UrlAusgeliehen + "?id=" + idIndex + "&status=" + "ausgeliehen";
+            await fetch(UrlAusgeliehen);
+        }
+
+        async function freiMarkieren(_event: Event): Promise<void> {
+            let target: HTMLElement = <HTMLElement>_event.target;
+            let index: number = parseInt(target.getAttribute("ArtikelIndex"));
+            let idIndex: string  = produkte[index]._id;
+
+            let UrlAusgeliehen: string = serverUrl + "AstaIntern/statusupdate";
+            UrlAusgeliehen = UrlAusgeliehen + "?id=" + idIndex + "&status=" + "freigegeben";
             await fetch(UrlAusgeliehen);
         }
     }
