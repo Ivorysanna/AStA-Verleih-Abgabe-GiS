@@ -4,7 +4,7 @@ namespace Verleih {
         let produkte: Produkt[] = JSON.parse(await result.text());
         console.log(produkte);
 
-        for (let i: number = 0; produkte.length; i++) {
+        for (let i: number = 0; i < produkte.length; i++) {
             let produktDiv: HTMLDivElement = document.createElement("div");
             produktDiv.classList.add("produktDiv");
 
@@ -61,9 +61,10 @@ namespace Verleih {
             let index: number = parseInt(target.getAttribute("ArtikelIndex"));
             let idIndex: string  = produkte[index]._id;
 
-            let UrlAusgeliehen: string = serverUrl + "AstaIntern/statusupdate";
+            let UrlAusgeliehen: string = serverUrl + "AstaIntern/statusUpdate";
             UrlAusgeliehen = UrlAusgeliehen + "?id=" + idIndex + "&status=" + "ausgeliehen";
             await fetch(UrlAusgeliehen);
+            location.reload();
         }
 
         async function freiMarkieren(_event: Event): Promise<void> {
@@ -71,9 +72,10 @@ namespace Verleih {
             let index: number = parseInt(target.getAttribute("ArtikelIndex"));
             let idIndex: string  = produkte[index]._id;
 
-            let UrlAusgeliehen: string = serverUrl + "AstaIntern/statusupdate";
+            let UrlAusgeliehen: string = serverUrl + "AstaIntern/statusUpdate";
             UrlAusgeliehen = UrlAusgeliehen + "?id=" + idIndex + "&status=" + "freigegeben";
             await fetch(UrlAusgeliehen);
+            location.reload();
         }
     }
 

@@ -5,7 +5,7 @@ var Verleih;
         let result = await fetch(Verleih.serverUrl + "AstaIntern");
         let produkte = JSON.parse(await result.text());
         console.log(produkte);
-        for (let i = 0; produkte.length; i++) {
+        for (let i = 0; i < produkte.length; i++) {
             let produktDiv = document.createElement("div");
             produktDiv.classList.add("produktDiv");
             //Name reinladen
@@ -53,17 +53,19 @@ var Verleih;
             let target = _event.target;
             let index = parseInt(target.getAttribute("ArtikelIndex"));
             let idIndex = produkte[index]._id;
-            let UrlAusgeliehen = Verleih.serverUrl + "AstaIntern/statusupdate";
+            let UrlAusgeliehen = Verleih.serverUrl + "AstaIntern/statusUpdate";
             UrlAusgeliehen = UrlAusgeliehen + "?id=" + idIndex + "&status=" + "ausgeliehen";
             await fetch(UrlAusgeliehen);
+            location.reload();
         }
         async function freiMarkieren(_event) {
             let target = _event.target;
             let index = parseInt(target.getAttribute("ArtikelIndex"));
             let idIndex = produkte[index]._id;
-            let UrlAusgeliehen = Verleih.serverUrl + "AstaIntern/statusupdate";
+            let UrlAusgeliehen = Verleih.serverUrl + "AstaIntern/statusUpdate";
             UrlAusgeliehen = UrlAusgeliehen + "?id=" + idIndex + "&status=" + "freigegeben";
             await fetch(UrlAusgeliehen);
+            location.reload();
         }
     }
     produkteAstaAnzeigen();
