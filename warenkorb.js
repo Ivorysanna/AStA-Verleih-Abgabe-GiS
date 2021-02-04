@@ -50,7 +50,7 @@ var Verleih;
     async function absendenEvent(_event) {
         let nameFeld = document.querySelector(".inputName");
         let nameFeldWert = nameFeld.value;
-        let UrlVerleih = "http://127.0.0.1:5001/Verleih";
+        let UrlVerleih = Verleih.serverUrl + "Verleih";
         UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
         await fetch(UrlVerleih);
     }
