@@ -2,7 +2,7 @@
 var Verleih;
 (function (Verleih) {
     async function produkteAnzeigen() {
-        let result = await fetch("http://127.0.0.1:5001/Produkte");
+        let result = await fetch(Verleih.serverUrl + "Produkte");
         let produkte = JSON.parse(await result.text());
         console.log(produkte);
         // Erstellen von Divs für Produkte

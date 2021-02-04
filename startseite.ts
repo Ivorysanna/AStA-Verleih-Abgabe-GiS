@@ -14,7 +14,7 @@ namespace Verleih {
 
 
     async function produkteAnzeigen(): Promise<void> {
-        let result: Response = await fetch("http://127.0.0.1:5001/Produkte");
+        let result: Response = await fetch(serverUrl + "Produkte");
         let produkte: Produkt[] = JSON.parse(await result.text());
         console.log(produkte);
 
