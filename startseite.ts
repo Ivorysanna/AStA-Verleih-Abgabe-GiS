@@ -1,5 +1,3 @@
-
-
 namespace Verleih {
 
     export interface Produkt {
