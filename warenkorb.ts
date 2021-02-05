@@ -84,12 +84,11 @@ namespace Verleih {
       localStorage.setItem(warenkorbLocalStorage, "[]");
       
       //Nachricht wenn Produkte erfolgreich verschickt wurden
-      let removeDiv = document.querySelector(".produktDiv");
+      let removeDiv = document.querySelector(".produktWarenkorb");
       removeDiv.remove();
       
       let absendeNachricht: HTMLParagraphElement = document.createElement("p");
-      document.querySelector(".produktWarenkorb").appendChild(absendeNachricht);
-      absendeNachricht.classList.add("absendeText");
+      document.querySelector(".absendeNachricht").appendChild(absendeNachricht);
       absendeNachricht.innerHTML = "Die Produkte wurden an das AstA-Team geschickt!";
     }else{
       alert("Bitte tragen Sie einen Namen ein");
