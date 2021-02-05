@@ -78,5 +78,16 @@ namespace Verleih {
     let UrlVerleih: string = serverUrl +"Verleih";
     UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
     await fetch(UrlVerleih);
+
+    localStorage.setItem(warenkorbLocalStorage, "[]");
+    // location.reload();
+    
+    let removeDiv = document.querySelector(".produktDiv");
+    removeDiv.remove();
+
+    let absendeNachricht: HTMLParagraphElement = document.createElement("p");
+    document.querySelector(".produktWarenkorb").appendChild(absendeNachricht);
+    absendeNachricht.classList.add("absendeText");
+    absendeNachricht.innerHTML = "Die Produkte wurden an das AstA-Team geschickt!";
   }
 }

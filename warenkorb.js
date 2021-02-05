@@ -53,6 +53,14 @@ var Verleih;
         let UrlVerleih = Verleih.serverUrl + "Verleih";
         UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
         await fetch(UrlVerleih);
+        localStorage.setItem(Verleih.warenkorbLocalStorage, "[]");
+        // location.reload();
+        let removeDiv = document.querySelector(".produktDiv");
+        removeDiv.remove();
+        let absendeNachricht = document.createElement("p");
+        document.querySelector(".produktWarenkorb").appendChild(absendeNachricht);
+        absendeNachricht.classList.add("absendeText");
+        absendeNachricht.innerHTML = "Die Produkte wurden an das AstA-Team geschickt!";
     }
 })(Verleih || (Verleih = {}));
 //# sourceMappingURL=warenkorb.js.map
