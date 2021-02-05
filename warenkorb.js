@@ -50,17 +50,23 @@ var Verleih;
     async function absendenEvent(_event) {
         let nameFeld = document.querySelector(".inputName");
         let nameFeldWert = nameFeld.value;
-        let UrlVerleih = Verleih.serverUrl + "Verleih";
-        UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
-        await fetch(UrlVerleih);
-        localStorage.setItem(Verleih.warenkorbLocalStorage, "[]");
-        // location.reload();
-        let removeDiv = document.querySelector(".produktDiv");
-        removeDiv.remove();
-        let absendeNachricht = document.createElement("p");
-        document.querySelector(".produktWarenkorb").appendChild(absendeNachricht);
-        absendeNachricht.classList.add("absendeText");
-        absendeNachricht.innerHTML = "Die Produkte wurden an das AstA-Team geschickt!";
+        //Name eingetragen Abfrage
+        if (nameFeldWert != "") {
+            let UrlVerleih = Verleih.serverUrl + "Verleih";
+            UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
+            await fetch(UrlVerleih);
+            localStorage.setItem(Verleih.warenkorbLocalStorage, "[]");
+            //Nachricht wenn Produkte erfolgreich verschickt wurden
+            let removeDiv = document.querySelector(".produktDiv");
+            removeDiv.remove();
+            let absendeNachricht = document.createElement("p");
+            document.querySelector(".produktWarenkorb").appendChild(absendeNachricht);
+            absendeNachricht.classList.add("absendeText");
+            absendeNachricht.innerHTML = "Die Produkte wurden an das AstA-Team geschickt!";
+        }
+        else {
+            alert("Bitte tragen Sie einen Namen ein");
+        }
     }
 })(Verleih || (Verleih = {}));
 //# sourceMappingURL=warenkorb.js.map

@@ -75,19 +75,24 @@ namespace Verleih {
     let nameFeld: HTMLInputElement = document.querySelector(".inputName");
     let nameFeldWert: string = nameFeld.value;
 
-    let UrlVerleih: string = serverUrl +"Verleih";
-    UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
-    await fetch(UrlVerleih);
-
-    localStorage.setItem(warenkorbLocalStorage, "[]");
-    // location.reload();
-    
-    let removeDiv = document.querySelector(".produktDiv");
-    removeDiv.remove();
-
-    let absendeNachricht: HTMLParagraphElement = document.createElement("p");
-    document.querySelector(".produktWarenkorb").appendChild(absendeNachricht);
-    absendeNachricht.classList.add("absendeText");
-    absendeNachricht.innerHTML = "Die Produkte wurden an das AstA-Team geschickt!";
+    //Name eingetragen Abfrage
+    if(nameFeldWert != ""){
+      let UrlVerleih: string = serverUrl +"Verleih";
+      UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
+      await fetch(UrlVerleih);
+      
+      localStorage.setItem(warenkorbLocalStorage, "[]");
+      
+      //Nachricht wenn Produkte erfolgreich verschickt wurden
+      let removeDiv = document.querySelector(".produktDiv");
+      removeDiv.remove();
+      
+      let absendeNachricht: HTMLParagraphElement = document.createElement("p");
+      document.querySelector(".produktWarenkorb").appendChild(absendeNachricht);
+      absendeNachricht.classList.add("absendeText");
+      absendeNachricht.innerHTML = "Die Produkte wurden an das AstA-Team geschickt!";
+    }else{
+      alert("Bitte tragen Sie einen Namen ein");
+    }
   }
 }
