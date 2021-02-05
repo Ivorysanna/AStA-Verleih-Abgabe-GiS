@@ -61,25 +61,15 @@ namespace Verleih {
             //Event zum Waren in Warenkorb hinzufügen
            warenkorbButton?.addEventListener("click", addWarenkorb);
 
-
-            let istImWarenkorb: boolean = false;
-            for(let i: number = 0; i < localStorageArray.length; i++){
-                if(localStorageArray[i]._id == produkte[i]._id){
-                    istImWarenkorb = true;
+            for(let j: number = 0; j < localStorageArray.length; j++){
+                if(localStorageArray[j]._id == produkte[i]._id){
+                    produktDiv.classList.add("clicked");
                     break;
                 }
             }
+
         }
 
-        let warenkorbLocalStorage: string = "warenkorb";
-
-        //Setzen von Warenkorb Array falls keiner vorhanden ist
-        if(!localStorage.getItem(warenkorbLocalStorage)){
-            localStorage.setItem(warenkorbLocalStorage, "[]");
-        }
-
-
-        //
         function addWarenkorb(_event: Event): void{
             //Produkte selektieren durch Button druck
             let target: HTMLElement = <HTMLElement>_event.target;
@@ -118,5 +108,13 @@ namespace Verleih {
 
     }
 
-    produkteAnzeigen();
+    async function seiteLaden(): Promise<void> {
+          //Setzen von Warenkorb Array falls keiner vorhanden ist
+          if(!localStorage.getItem(warenkorbLocalStorage)){
+            localStorage.setItem(warenkorbLocalStorage, "[]");
+        }
+        produkteAnzeigen();
+
+    }
+    seiteLaden();
 }

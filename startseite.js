@@ -39,20 +39,13 @@ var Verleih;
             warenkorbButton.setAttribute("ArtikelIndex", i.toString());
             //Event zum Waren in Warenkorb hinzufügen
             warenkorbButton?.addEventListener("click", addWarenkorb);
-            let istImWarenkorb = false;
-            for (let i = 0; i < localStorageArray.length; i++) {
-                if (localStorageArray[i]._id == produkte[i]._id) {
-                    istImWarenkorb = true;
+            for (let j = 0; j < localStorageArray.length; j++) {
+                if (localStorageArray[j]._id == produkte[i]._id) {
+                    produktDiv.classList.add("clicked");
                     break;
                 }
             }
         }
-        let warenkorbLocalStorage = "warenkorb";
-        //Setzen von Warenkorb Array falls keiner vorhanden ist
-        if (!localStorage.getItem(warenkorbLocalStorage)) {
-            localStorage.setItem(warenkorbLocalStorage, "[]");
-        }
-        //
         function addWarenkorb(_event) {
             //Produkte selektieren durch Button druck
             let target = _event.target;
@@ -61,7 +54,7 @@ var Verleih;
             //Abfrage ob Artikel vorhanden ist
             if (produkte[index].status == "frei") {
                 //In den Warenkorb hinzufügen
-                let warenkorb = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
+                let warenkorb = JSON.parse(localStorage.getItem(Verleih.warenkorbLocalStorage));
                 console.log(warenkorb);
                 let istImWarenkorb = false;
                 for (let i = 0; i < warenkorb.length; i++) {
@@ -75,7 +68,7 @@ var Verleih;
                 }
                 else {
                     warenkorb.push(ausgewaehlterArtikel);
-                    localStorage.setItem(warenkorbLocalStorage, JSON.stringify(warenkorb));
+                    localStorage.setItem(Verleih.warenkorbLocalStorage, JSON.stringify(warenkorb));
                 }
                 //dem div über dem Button eine Klasse hinzufügen
                 target.parentElement.classList.add("clicked");
@@ -85,6 +78,13 @@ var Verleih;
             }
         }
     }
-    produkteAnzeigen();
+    async function seiteLaden() {
+        //Setzen von Warenkorb Array falls keiner vorhanden ist
+        if (!localStorage.getItem(Verleih.warenkorbLocalStorage)) {
+            localStorage.setItem(Verleih.warenkorbLocalStorage, "[]");
+        }
+        produkteAnzeigen();
+    }
+    seiteLaden();
 })(Verleih || (Verleih = {}));
 //# sourceMappingURL=startseite.js.map
