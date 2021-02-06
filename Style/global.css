@@ -25,3 +25,13 @@ nav {
 a{
     text-decoration: none;
 }
+
+.statusBild{
+    height: 30px;
+    margin-top: 5px;
+}
+
+.produktName{
+    font-size: larger;
+    font-weight: 400;
+}

@@ -47,17 +47,11 @@ nav {
     align-items: center; /* align vertical */
     border-radius: 24px 24px 24px 24px;
     border: double;
-
 }
 
 .produktBild {
     height: 200px; 
     margin: 10px 0;
-}
-
-.statusBild{
-    height: 30px;
-    margin-top: 5px;
 }
 
 .produktName{
@@ -86,9 +80,6 @@ nav {
     .produktDiv{
         margin-bottom: 50px;
     }
-
-
-
 }
 
 /* Tablet */
@@ -97,12 +88,19 @@ nav {
         margin-bottom: 50px;
         margin-right: 20px;
     }
-}
+    
+    .gebuehrenDiv{
+        margin: 20px 0 5px 0;
+    }
 
+}
 /* Smartphone */
 @media (max-width: 599px){
     .produktDiv{
         margin-bottom: 50px;
+
     }
-    
+    .gebuehrenDiv{
+        margin: 20px 0 5px 0;
+    }
 }
