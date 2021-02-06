@@ -17,7 +17,7 @@ namespace Verleih {
         console.log(produkte);
 
 
-        let localStorageArray: Produkt[] = JSON.parse(localStorage.getItem("warenkorb"));
+        let localStorageArray: Produkt[] = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
 
 
         // Erstellen von Divs für Produkte

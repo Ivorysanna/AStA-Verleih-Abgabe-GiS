@@ -2,7 +2,7 @@ namespace Verleih {
   let produkteImWarenkorb: HTMLDivElement = document.querySelector(
     ".produktWarenkorb"
   );
-  let lokaleSachen: Produkt[] = JSON.parse(localStorage.getItem("warenkorb"));
+  let lokaleSachen: Produkt[] = JSON.parse(localStorage.getItem(warenkorbLocalStorage));
   // produkteImWarenkorb.appendChild(lokaleSachen);
   let summe: number = 0;
 
@@ -67,7 +67,7 @@ namespace Verleih {
 
     lokaleSachen.splice(index, 1);
 
-    localStorage.setItem("warenkorb", JSON.stringify(lokaleSachen));
+    localStorage.setItem(warenkorbLocalStorage, JSON.stringify(lokaleSachen));
     location.reload();
   }
 

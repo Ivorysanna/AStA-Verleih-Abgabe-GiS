@@ -5,7 +5,7 @@ var Verleih;
         let result = await fetch(Verleih.serverUrl + "Produkte");
         let produkte = JSON.parse(await result.text());
         console.log(produkte);
-        let localStorageArray = JSON.parse(localStorage.getItem("warenkorb"));
+        let localStorageArray = JSON.parse(localStorage.getItem(Verleih.warenkorbLocalStorage));
         // Erstellen von Divs für Produkte
         for (let i = 0; i < produkte.length; i++) {
             let produktDiv = document.createElement("div");

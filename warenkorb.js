@@ -2,7 +2,7 @@
 var Verleih;
 (function (Verleih) {
     let produkteImWarenkorb = document.querySelector(".produktWarenkorb");
-    let lokaleSachen = JSON.parse(localStorage.getItem("warenkorb"));
+    let lokaleSachen = JSON.parse(localStorage.getItem(Verleih.warenkorbLocalStorage));
     // produkteImWarenkorb.appendChild(lokaleSachen);
     let summe = 0;
     let absendenDiv = document.querySelector(".absenden");
@@ -44,7 +44,7 @@ var Verleih;
         let target = _event.target;
         let index = parseInt(target.getAttribute("ArtikelIndex"));
         lokaleSachen.splice(index, 1);
-        localStorage.setItem("warenkorb", JSON.stringify(lokaleSachen));
+        localStorage.setItem(Verleih.warenkorbLocalStorage, JSON.stringify(lokaleSachen));
         location.reload();
     }
     async function absendenEvent(_event) {
