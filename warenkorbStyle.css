@@ -55,3 +55,28 @@ nav {
     margin: 10px 0;
     object-fit: contain;
 }
+
+
+/* Responsive */
+
+/* Smartphone */
+@media (max-width: 599px){
+    #logo{
+        height: 60%;
+    }
+    nav{
+      flex-wrap: wrap;  
+    }
+    .produktDiv{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+    }
+    .gebuehrenDiv{
+        margin-bottom: 20px;
+    }
+    .produktName{
+        order: -1;
+    }
+
+}

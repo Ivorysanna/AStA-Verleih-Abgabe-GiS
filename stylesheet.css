@@ -3,13 +3,18 @@
     /* Content, Padding und Border werden bei der Breitenberechnung berücksichtigt  */
 }
 
+a{
+    text-decoration: none;
+}
+
 html, body {
     margin: 0;
     padding: 0;
 }
 
 #logo {
-    height: 60%;
+    height: 100%;
+    margin-top: -10px;
 }
 
 #checkout-link {
@@ -19,16 +24,30 @@ html, body {
     height: 100%;
 }
 
+.loginContainer {
+    color: inherit;
+    text-decoration: inherit;
+    display: block;
+    height: 100%;
+    
+}
+
+.logIn{
+    margin-top: -5px;
+}
+
 nav {
     display: flex;
     padding: 10px;
     justify-content: space-between;
     height: 100px;
     width: 100%;
+    background-color: #e0dae7;
 }
 
 #warenkorb {
-    height: 60%;
+    margin-top: 10px;
+    height: 65%;
 }
 
 #produkteContainer {
@@ -70,4 +89,34 @@ nav {
 .produktDiv.clicked{
 background-color: #e0dae7;
 border-style: double;
+}
+
+
+/* Desktop */
+@media (min-width: 1025px){
+    #produkteContainer{
+        margin: 0px 120px;
+    }
+    .produktDiv{
+        margin-bottom: 50px;
+    }
+
+
+
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 1024px){
+    .produktDiv{
+        margin-bottom: 50px;
+        margin-right: 20px;
+    }
+}
+
+/* Smartphone */
+@media (max-width: 599px){
+    .produktDiv{
+        margin-bottom: 50px;
+    }
+    
 }
