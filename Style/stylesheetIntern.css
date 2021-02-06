@@ -1,25 +1,5 @@
-* {
-    box-sizing: border-box;
-    /* Content, Padding und Border werden bei der Breitenberechnung berücksichtigt  */
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
-nav {
-    display: flex;
-    padding: 10px;
-    justify-content: space-between;
-    height: 100px;
+#startseite{
     width: 100%;
-    background-color: #e0dae7;
-}
-
-#logo {
-    height: 100%;
-    margin-top: -10px;
 }
 
 .reservierteProdukte{
