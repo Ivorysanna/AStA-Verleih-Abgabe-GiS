@@ -16,13 +16,11 @@
     display: flex;
     margin: 10px;
     flex-direction: row;
-    width: 300px;
     padding: 10px;
     justify-content: space-around;
     /* align horizontal */
     align-items: center;
     /* align vertical */
-    width: 90%;
     border: double;
 }
 

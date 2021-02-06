@@ -1,5 +1,5 @@
 #startseite{
-    width: 100%;
+    width: 190px;
 }
 
 .reservierteProdukte{
@@ -12,11 +12,11 @@
     margin: 10px;
     display: flex;
     flex-direction: column;
-    width: 300px;
     padding: 10px;
     justify-content: center; /* align horizontal */
     align-items: center; /* align vertical */
     border-radius: 24px 24px 24px 24px;
+    width: 300px;
     border: double;
 }
 
