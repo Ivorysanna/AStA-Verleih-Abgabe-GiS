@@ -18,7 +18,8 @@ nav {
 }
 
 #logo {
-    height: 90%;
+    height: 100%;
+    margin-top: -10px;
 }
 
 .reservierteProdukte{

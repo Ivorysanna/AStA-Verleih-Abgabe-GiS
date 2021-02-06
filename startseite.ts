@@ -21,7 +21,7 @@ namespace Verleih {
 
 
         // Erstellen von Divs für Produkte
-        for (let i: number = 0; i < produkte.length; i++) {
+        for (let i: number = 0; i <produkte.length; i++) {
             let produktDiv: HTMLDivElement = document.createElement("div");
             produktDiv.classList.add("produktDiv");
 
@@ -61,7 +61,7 @@ namespace Verleih {
             //Event zum Waren in Warenkorb hinzufügen
            warenkorbButton?.addEventListener("click", addWarenkorb);
 
-            for(let j: number = 0; j < localStorageArray.length; j++){
+            for(let j: number = 0; j <localStorageArray.length; j++){
                 if(localStorageArray[j]._id == produkte[i]._id){
                     produktDiv.classList.add("clicked");
                     break;
