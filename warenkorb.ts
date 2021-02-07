@@ -58,7 +58,7 @@ namespace Verleih {
   }
 
   let warenkorbSumme: HTMLDivElement = document.querySelector(".summe");
-  warenkorbSumme.innerHTML = "Summe: " + summe + "€";
+  warenkorbSumme.innerHTML = "Summe: " + summe + " €";
 
   //Funktion zum löschen von Produkten
   function deleteProdukt(_event: Event): void {
@@ -75,12 +75,15 @@ namespace Verleih {
     let nameFeld: HTMLInputElement = document.querySelector(".inputName");
     let nameFeldWert: string = nameFeld.value;
 
-    //Name eingetragen Abfrage
-    if(nameFeldWert != ""){
+    if(localStorage.getItem(warenkorbLocalStorage) == "[]"){
+      console.log(warenkorbLocalStorage);
+      alert("Sie haben keine Waren im Warenkorb");
+    }else if(nameFeldWert != ""){
       let UrlVerleih: string = serverUrl +"Verleih";
       UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
       await fetch(UrlVerleih);
       
+      console.log(localStorage);
       localStorage.setItem(warenkorbLocalStorage, "[]");
       
       //Nachricht wenn Produkte erfolgreich verschickt wurden

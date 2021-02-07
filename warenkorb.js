@@ -38,7 +38,7 @@ var Verleih;
         summe += lokaleSachen[i].ausleihGebuehr;
     }
     let warenkorbSumme = document.querySelector(".summe");
-    warenkorbSumme.innerHTML = "Summe: " + summe + "€";
+    warenkorbSumme.innerHTML = "Summe: " + summe + " €";
     //Funktion zum löschen von Produkten
     function deleteProdukt(_event) {
         let target = _event.target;
@@ -50,11 +50,15 @@ var Verleih;
     async function absendenEvent(_event) {
         let nameFeld = document.querySelector(".inputName");
         let nameFeldWert = nameFeld.value;
-        //Name eingetragen Abfrage
-        if (nameFeldWert != "") {
+        if (localStorage.getItem(Verleih.warenkorbLocalStorage) == "[]") {
+            console.log(Verleih.warenkorbLocalStorage);
+            alert("Sie haben keine Waren im Warenkorb");
+        }
+        else if (nameFeldWert != "") {
             let UrlVerleih = Verleih.serverUrl + "Verleih";
             UrlVerleih = UrlVerleih + "?name=" + nameFeldWert + "&produkte=" + JSON.stringify(lokaleSachen);
             await fetch(UrlVerleih);
+            console.log(localStorage);
             localStorage.setItem(Verleih.warenkorbLocalStorage, "[]");
             //Nachricht wenn Produkte erfolgreich verschickt wurden
             let removeDiv = document.querySelector(".produktWarenkorb");
